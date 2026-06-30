@@ -314,7 +314,7 @@ export default function Home() {
             {/* Vertical Timeline Line */}
             <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-white/10"></div>
 
-            {/* Experience Item (Internship) */}
+            {/* Experience Item (Completed Internship) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -325,7 +325,7 @@ export default function Home() {
               {/* Left Side: Date (Desktop) */}
               <div className="hidden md:block w-[45%] text-right pr-8">
                 <span className="inline-flex items-center gap-2 text-primary font-medium bg-primary/10 border border-primary/20 px-4 py-2 rounded-full text-sm">
-                  <Calendar size={16} /> March 2026 - Present
+                  <Calendar size={16} /> Apr 2026 - Jun 2026
                 </span>
               </div>
 
@@ -340,30 +340,24 @@ export default function Home() {
                   {/* Date (Mobile Only) */}
                   <div className="md:hidden mb-4">
                     <span className="inline-flex items-center gap-2 text-primary font-medium bg-primary/10 border border-primary/20 px-4 py-2 rounded-full text-xs">
-                      <Calendar size={14} /> Mar 2026 - Present
+                      <Calendar size={14} /> Apr 2026 - Jun 2026
                     </span>
                   </div>
 
                   <h3 className="text-xl md:text-2xl font-bold text-slate-200 mb-1 font-heading">
-                    Web Development Internee
+                    Software Engineer Trainee
                   </h3>
-                  {/* UPDATE THIS WITH YOUR COMPANY NAME! */}
+
                   <h4 className="text-slate-400 font-medium mb-6 text-sm md:text-base">
-                    Integriti - Lahore, PK
+                    Integriti.io - Lahore, PK
                   </h4>
 
                   <ul className="space-y-3">
                     <li className="text-sm md:text-base text-slate-400 flex items-start gap-3 leading-relaxed">
                       <span className="text-primary mt-1">▹</span>
-                      Developing digital experiences and practice websites
-                      across major CMS platforms including WordPress, Elementor,
-                      Shopify, and Webflow.
-                    </li>
-                    <li className="text-sm md:text-base text-slate-400 flex items-start gap-3 leading-relaxed">
-                      <span className="text-primary mt-1">▹</span>
-                      Concurrently architecting a complex Next.js and TypeScript
-                      application integrating YOLOv11 for AI-driven medical
-                      analysis.
+                      Completed a 2-month traineeship developing digital
+                      experiences and client websites across major CMS platforms
+                      including WordPress, Elementor, Shopify, and Webflow.
                     </li>
                   </ul>
                 </div>
