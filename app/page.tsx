@@ -55,7 +55,7 @@ const projects = [
       "Python",
       "Tailwind CSS",
     ],
-    liveUrl: "https://medvision-ai.ddns.net/",
+    liveUrl: "https://medvisionai.ddns.net/",
     githubUrl: "https://github.com/minhasfahad/medvision-ai",
   },
   {
