@@ -39,29 +39,33 @@ const projects = [
       "An automated brain tumor detection and appointment scheduling system. Built to bridge complex AI models with a modern, user-friendly frontend.",
     notice: "",
     highlights: [
-      "Integrated YOLOv11 model for high-accuracy medical image analysis.",
-      "Developed secure, seamless appointment scheduling workflows.",
-      "Implemented robust user authentication with secure password recovery using mailer.ts.",
-      "Engineered a comprehensive administrative dashboard for real-time system management.",
+      "Fine-tuned a pretrained YOLO11-seg model on a public brain MRI dataset (96.6% IoU on validation data) and served it through a FastAPI service.",
+      "Added a MobileNetV3 classifier to pre-validate uploaded MRI images.",
+      "Built role-based access for patients, doctors, radiologists and admins with NextAuth and JWT.",
+      "Implemented appointment booking, PDF reports with two-stage verification, video consultation and an AI chatbot.",
       "Built with Next.js and TypeScript for optimal frontend performance.",
     ],
     techStack: [
       "Next.js",
       "TypeScript",
-      "React",
       "Node.js",
       "MongoDB",
-      "YOLOv11",
+      "FastAPI",
       "Python",
+      "YOLO11",
+      "MobileNetV3",
+      "NextAuth",
+      "Zustand",
+      "Cloudinary",
       "Tailwind CSS",
     ],
-    liveUrl: "https://medvisionai.ddns.net/",
+    liveUrl: "https://medvision-ai-xi.vercel.app/",
     githubUrl: "https://github.com/minhasfahad/medvision-ai",
   },
   {
-    title: "Enterprise CRM System",
+    title: "MERN CRM Dashboard",
     description:
-      "A scalable Customer Relationship Management platform designed to streamline business operations and team coordination.",
+      "A role-based CRM dashboard for managing customers and team members, with Admin, Manager and Team Member roles and JWT authentication.",
     notice: "",
     highlights: [
       "Implemented secure JWT authentication and role-based access control.",
@@ -192,7 +196,7 @@ export default function Home() {
             <div className="relative w-full h-full rounded-[2rem] overflow-hidden glass-card border-white/10 p-2 transform transition-transform duration-500 hover:rotate-1 hover:scale-105">
               <div className="relative w-full h-full rounded-3xl overflow-hidden bg-surface">
                 <Image
-                  src="/profile.png"
+                  src="/profile 2.png"
                   alt="Fahad Minhas"
                   fill
                   className="object-cover"
@@ -222,28 +226,24 @@ export default function Home() {
               className="space-y-6 text-slate-400 leading-relaxed"
             >
               <p>
-                I am a final-year BS Computer Science student at the University
-                of Management and Technology (UMT) in Lahore. My professional
-                drive is centered squarely on{" "}
-                <strong className="text-slate-200">
-                  Full-Stack Web Development
-                </strong>
-                , with a deep specialization in the MERN stack and Next.js.
+                I&apos;m a Computer Science graduate from the University of
+                Management and Technology (UMT), Lahore, with a CGPA of 3.72. My
+                focus is full-stack web development with the MERN stack and
+                Next.js.
               </p>
               <p>
-                Currently, I&apos;m working as a Web Development Internee,
-                building a variety of digital experiences across platforms like
-                WordPress, Shopify, and Webflow. Concurrently, I&apos;m
-                architecting a complex Next.js & TypeScript application for my
-                final year project.
+                I recently completed a two-month traineeship at Integriti.io,
+                building product listing pages and client websites on Shopify,
+                WordPress and Webflow. For my final year project, I built
+                MedVision AI, a role-based healthcare platform with AI-assisted
+                brain tumor detection.
               </p>
               <p>
-                While my primary engineering focus is the web, I also have a
-                strong technical foundation in AI and Computer Vision (working
-                with Python and YOLO models). I&apos;m a strong
-                communicator—having recently completed an English Immersion
-                course—and I thrive on bridging complex backend systems with
-                intuitive, modern frontends.
+                I also have applied experience in computer vision: I fine-tuned
+                a pretrained YOLO model for MRI tumor segmentation and connected
+                it to a web application through a FastAPI service. I communicate
+                clearly in (IELTS 6.5) and enjoy taking a project from database
+                to user interface.
               </p>
             </motion.div>
 
@@ -267,7 +267,7 @@ export default function Home() {
                   <div>
                     <strong className="text-slate-300 block">Education</strong>
                     <span className="text-slate-400 text-sm">
-                      BSCS (Final Year) - UMT, Lahore
+                     BS Computer Science - UMT, Lahore (2022-2026)
                     </span>
                   </div>
                 </li>
@@ -281,7 +281,7 @@ export default function Home() {
                       Current Role
                     </strong>
                     <span className="text-slate-400 text-sm">
-                      Web Dev Internee (Mar 2026 - Present)
+                      Open to entry-level Full-Stack / Software Engineer roles
                     </span>
                   </div>
                 </li>
@@ -355,9 +355,13 @@ export default function Home() {
                   <ul className="space-y-3">
                     <li className="text-sm md:text-base text-slate-400 flex items-start gap-3 leading-relaxed">
                       <span className="text-primary mt-1">▹</span>
-                      Completed a 2-month traineeship developing digital
-                      experiences and client websites across major CMS platforms
-                      including WordPress, Elementor, Shopify, and Webflow.
+                      Built product listing pages and e-commerce features across
+                      4-5 client projects using Shopify, WordPress and Webflow.
+                    </li>
+                    <li className="text-sm md:text-base text-slate-400 flex items-start gap-3 leading-relaxed">
+                      <span className="text-primary mt-1">▹</span>
+                      Developed responsive pages with Elementor and hand-coded
+                      HTML/CSS, including work on Integriti Studio’s website.
                     </li>
                   </ul>
                 </div>
@@ -402,7 +406,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CONTACT SECTION --- */}
       {/* --- CONTACT SECTION --- */}
       <section id="contact" className="w-full pt-32 relative z-10 text-center">
         <div className="section-container max-w-2xl">
