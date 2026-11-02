@@ -74,7 +74,7 @@ const projects = [
     ],
     techStack: ["MongoDB", "Express.js", "React", "Node.js", "JWT"],
     liveUrl: "https://crm-full-stack-app-no-auth.vercel.app/",
-    githubUrl: "https://github.com/minhasfahad/CRM_Full_Stack_App_NO_AUTH",
+    githubUrl: "https://github.com/minhasfahad/CRM_Full_Stack_App",
   },
   {
     title: "Luxury Timepiece Store",
