@@ -8,15 +8,22 @@ import { FiGithub as Github } from "react-icons/fi";
 export default function ProjectCard({ title, description, highlights, techStack, index, liveUrl, githubUrl, notice }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Lock page scroll while the modal is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
+  }, [isOpen]);
+
+  // Close with the Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [isOpen]);
 
   return (
@@ -70,29 +77,33 @@ export default function ProjectCard({ title, description, highlights, techStack,
       {/* --- FULL SCREEN MODAL --- */}
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[100] overflow-y-auto flex justify-center items-start pt-10 pb-10 sm:pt-20 sm:pb-20 px-4">
-
-            {/* ✅ FIX 1: Plain div for backdrop visual blur — pointer-events-none so it NEVER intercepts clicks */}
-            <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm pointer-events-none" />
-
-            {/* ✅ FIX 2: Separate plain div just for closing — sits behind modal via z-index */}
+          <motion.div
+            key="modal-root"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto px-4 py-10 sm:py-20"
+          >
+            {/* Backdrop: clicking it closes the modal */}
             <div
-              className="fixed inset-0 cursor-pointer z-[1]"
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
               onClick={() => setIsOpen(false)}
             />
 
-            {/* ✅ FIX 3: Modal card — z-[2] so it's always above the close zone */}
+            {/* Modal card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", duration: 0.5 }}
-              className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-2xl shadow-2xl z-[2] p-6 sm:p-8 mt-auto mb-auto"
+              onClick={(e) => e.stopPropagation()}
+              className="relative z-[2] w-full max-w-2xl bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-6 sm:p-8 my-auto"
             >
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                aria-label="Close"
               >
                 <X size={20} />
               </button>
@@ -151,27 +162,31 @@ export default function ProjectCard({ title, description, highlights, techStack,
                 </div>
               </div>
 
-              {/* ✅ FIX 4: Buttons use window.open — most reliable method across all browsers */}
+              {/* Links: real anchor tags */}
               <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-white/10">
                 {liveUrl && (
-                  <button
-                    onClick={() => window.open(liveUrl, "_blank", "noopener,noreferrer")}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-slate-900 font-bold rounded-lg transition-colors text-sm cursor-pointer"
+                  <a
+                    href={liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-slate-900 font-bold rounded-lg transition-colors text-sm"
                   >
                     View Live Project <ArrowUpRight size={16} />
-                  </button>
+                  </a>
                 )}
                 {githubUrl && (
-                  <button
-                    onClick={() => window.open(githubUrl, "_blank", "noopener,noreferrer")}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/10 rounded-lg transition-colors text-sm cursor-pointer"
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/10 rounded-lg transition-colors text-sm"
                   >
                     Source Code <Github size={16} />
-                  </button>
+                  </a>
                 )}
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
